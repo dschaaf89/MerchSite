@@ -22,4 +22,4 @@ ItemDetail.propTypes = {
   onClickingEdit: PropTypes.func
 };
 
-export default ItemDetails;
+export default ItemDetail;
