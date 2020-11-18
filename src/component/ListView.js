@@ -7,7 +7,7 @@ function ListView(props) {
     <React.Fragment>
       <ul>
         {props.Items.map((item, index) => 
-        <Item Name = {item.Name}
+        <Item Name={item.Name}
           Quantity={item.Quantity}
           key={index}/>
         )}
@@ -17,7 +17,7 @@ function ListView(props) {
 }
 
 Item.propTypes = {
-  Items: PropTypes.arrayOf(object).isRequired,
+  Items: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ListView;

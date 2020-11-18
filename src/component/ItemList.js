@@ -20,8 +20,10 @@ function ItemList () {
   return (
     <React.Fragment>
       <ItemController />
-      <ListView
-        items={itemCatalog} />
+      <div id="list-view">
+        <ListView
+          Items={itemCatalog} />
+      </div>
     </React.Fragment>
   );
 
