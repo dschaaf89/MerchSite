@@ -13,12 +13,12 @@ function ReusableForm(props) {
           type='text'
           name='Description'
           placeholder='Enter a Description' />
-          <input
+        <input
           type='number'
           name='Quantity'
           placeholder='Enter a Quantity' />
-          <button type ='submit'>Submit</button>
-          {/* Add cancel button */}
+        <button type ='submit'>Submit</button>
+        {/* Add cancel button */}
       </form>
     </React.Fragment>
     );

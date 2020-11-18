@@ -1,32 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {v4} from 'uuid'
+import ReusableForm from "./ReusableForm";
 
 function NewItemForm(props) {
-  return (
-    <React.Fragment>
-      <form onSubmit={handleNewItemForm}>
-        <input
-          type='text'
-          name='Name'
-          placeholder='Enter a Name' />
-        <input
-          type='text'
-          name='Description'
-          placeholder='Enter a Description' />
-          <input
-          type='number'
-          name='Quantity'
-          placeholder='Enter a Quantity' />
-          <button type ='submit'>Submit</button>
-          {/* Add cancel button */}
-      </form>
-    </React.Fragment>
-  )
-  function handleNewItemForm(event){
+
+  function handleNewItemFormSubmission(event) {
     event.preventDefault();
     props.onNewItemForm({Name: event.target.Name.value, Description: event.target.Description.value, Quantity: event.target.Quantity.value, id:v4()});
   }
+
+  return (
+    <React.Fragment>
+      <ReusableForm
+      formSubmissionHandler = {handleNewItemFormSubmission}
+      buttonText = "Add Item" />
+    </React.Fragment>
+  )
+};
+
+NewItemForm.propTypes = {
+  onNewItemCreation: PropTypes.func
 };
 
 export default NewItemForm;
