@@ -5,7 +5,7 @@ import {v4} from 'uuid'
 function NewItemForm(props) {
   return (
     <React.Fragment>
-      <form onSubmit={handleNewItemFormSubmission}>
+      <form onSubmit={handleNewItemForm}>
         <input
           type='text'
           name='Name'
@@ -23,6 +23,10 @@ function NewItemForm(props) {
       </form>
     </React.Fragment>
   )
+  function handleNewItemForm(event){
+    event.preventDefault();
+    props.onNewItemForm({Name: event.target.Name.value, Description: event.target.Description.value, Quantity: event.target.Quantity.value, id:v4()});
+  }
 };
 
 export default NewItemForm;

@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "./Header";
-import ItemList from "./ItemList";
+import ItemControl from "./ItemController";
 
 function App() {
   return (
     <React.Fragment>
       <Header />
-      <ItemList />
+      <ItemController />
 
     </React.Fragment>
   );
