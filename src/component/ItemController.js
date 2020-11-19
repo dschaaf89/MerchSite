@@ -11,7 +11,7 @@ class ItemController extends React.Component{
     super(props)
     this.state = {
       formVisibleOnPage: false,
-      itemCatalog = [],
+      itemCatalog: [],
       selectedItem: null,
       editing: false
     }
@@ -55,7 +55,7 @@ class ItemController extends React.Component{
   }
 
   handleChangingSelectedItem = (id) => { // view item in Detail
-    const selectedItem = this.state.item
+    const selectedItem = this.state.itemCatalog
       .filter(item => item.id === id)[0];
     this.setState({selectedItem});
   }
@@ -68,7 +68,16 @@ class ItemController extends React.Component{
       formVisibleOnPage: false
     });
   }
-  
+
+  handleChangeItemQuantityClick =  (itemToEdit) => {
+    const editedItemCatalog = this.state.itemCatalog
+      .filter(item => item.id !== this.state.selectedItem.id)
+      .concat(itemToEdit);
+    this.setState({
+      itemCatalog: editedItemCatalog,
+    });
+  }
+
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
@@ -78,21 +87,25 @@ class ItemController extends React.Component{
         onEditItem =  {this.handleEditingItemInList}/>
       buttonText = "Return to Item List";
     } else if (this.state.selectedItem !== null) { // delete and edit
+      
       currentlyVisibleState = <ItemDetail 
         item = {this.state.selectedItem} 
-        onClickDelete = {this.handleDeletingItem} 
-        onClickingEdit = {this.handleEditClick} />
+        onClickingDelete = {this.handleDeletingItem} 
+        onClickingEdit = {this.handleEditClick}
+        onChangeItemQuantityClick = {this.handleChangeItemQuantityClick} 
+        />
       buttonText = "Return to Item List";
     } else if (this.state.formVisibleOnPage) { // catch is set
       currentlyVisibleState = <NewItemForm 
         onNewItemCreation={this.handleAddingNewItemToList} />
       buttonText = "Return to Item List";
     } else {                                // default
-      currentlyVisibleState = <ItemList 
-        itemList={this.state.itemCatalog} 
+      currentlyVisibleState = <ListView 
+        Items={this.state.itemCatalog} 
         onItemSelection={this.handleChangingSelectedItem} />;
       buttonText = "Add Item";
     }
+    
     return (
       <React.Fragment>
         {currentlyVisibleState}

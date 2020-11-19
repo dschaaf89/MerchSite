@@ -9,11 +9,11 @@ function ListView(props) {
       <ul>
         {props.Items.map((item, index) => 
         <Item
-          whenItemClicked = {props.onTicketSelection}
+          whenItemClicked = {props.onItemSelection}
           Name={item.Name}
           Description={item.Description}
           Quantity={item.Quantity}
-          id={ticket.id}
+          id={item.id}
           key={item.id}/>
         )}
       </ul>
@@ -22,7 +22,7 @@ function ListView(props) {
 }
 
 Item.propTypes = {
-  Items: PropTypes.array.isRequired,
+  Items: PropTypes.array,
   onItemSelection: PropTypes.func
 };
 

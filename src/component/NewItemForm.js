@@ -7,14 +7,18 @@ function NewItemForm(props) {
 
   function handleNewItemFormSubmission(event) {
     event.preventDefault();
-    props.onNewItemForm({Name: event.target.Name.value, Description: event.target.Description.value, Quantity: event.target.Quantity.value, id:v4()});
+    props.onNewItemCreation({
+      Name: event.target.Name.value, 
+      Description: event.target.Description.value, 
+      Quantity: event.target.Quantity.value === "" || event.target.Quantity.value < 0 ? 0 : event.target.Quantity.value, 
+      id:v4()});
   }
 
   return (
     <React.Fragment>
       <ReusableForm
-      formSubmissionHandler = {handleNewItemFormSubmission}
-      buttonText = "Add Item" />
+        formSubmissionHandler = {handleNewItemFormSubmission}
+        buttonText = "Add Item" />
     </React.Fragment>
   )
 };

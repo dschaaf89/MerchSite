@@ -2,10 +2,15 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 function Item(props) {
+  let quantity = props.Quantity;
+  if(parseInt(quantity) === 0) {
+    quantity = 'Out Of Stock';
+  }
+  
   return (
     <React.Fragment>
       <div onClick = {() => props.whenItemClicked(props.id)}>
-        <li>{props.Name} : {props.Quantity}</li>
+        <li>{props.Name} : {quantity}</li>
       </div>
     </React.Fragment>
   );

@@ -10,12 +10,15 @@ function EditItemForm (props) {
     props.onEditItem({
       Name: event.target.Name.value, 
       Description: event.target.Description.value, 
-      Quantity: event.target.Quantity.value, 
+      Quantity: event.target.Quantity.value < 0 ? 0 : event.target.Quantity.value, 
       id: item.id});
   }
   return (
     <React.Fragment>
-      <ReusableForm 
+      <ReusableForm
+        Name={item.Name} 
+        Description={item.Description} 
+        Quantity={item.Quantity}
         formSubmissionHandler = {handleEditItemFormSubmission}
         buttonText="Update Item" />
     </React.Fragment>
