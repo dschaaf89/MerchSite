@@ -8,21 +8,22 @@ function ListView(props) {
     <React.Fragment>
       <ul>
         {props.Items.map((item, index) => 
-        <a onclick={handleItemDetail}><Item Name={item.Name}
+        <Item
+          whenItemClicked = {props.onTicketSelection}
+          Name={item.Name}
+          Description={item.Description}
           Quantity={item.Quantity}
-          key={item.id}/></a>
+          id={ticket.id}
+          key={item.id}/>
         )}
       </ul>
     </React.Fragment>
   );
-  // function handleGoToDetails(event){
-  //   event.preventDefault();
-  //   props.onGoToDetails({ key:});
-  // }
 }
 
 Item.propTypes = {
-  Items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  Items: PropTypes.array.isRequired,
+  onItemSelection: PropTypes.func
 };
 
 export default ListView;
