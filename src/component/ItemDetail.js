@@ -16,7 +16,7 @@ function ItemDetail(props){
     props.onChangeItemQuantityClick({
       Name: item.Name, 
       Description: item.Description, 
-      Quantity: isSub ? (item.Quantity === 0 ? 0 : item.Quantity = item.Quantity - dif) : item.Quantity = item.Quantity + dif, //  --item.Quantity  ===  item.Quantity = item.Quantity - 1
+      Quantity: isSub ? (item.Quantity === 0 ? 0 : item.Quantity = parseInt(item.Quantity) - dif) : item.Quantity = parseInt(item.Quantity) + dif, //  --item.Quantity  ===  item.Quantity = item.Quantity - 1
       id: item.id});
   }
 
