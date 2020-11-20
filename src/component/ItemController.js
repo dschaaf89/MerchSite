@@ -108,6 +108,8 @@ class ItemController extends React.Component{
     
     return (
       <React.Fragment>
+        {this.state.itemCatalog[0] === undefined && 
+          currentlyVisibleState.props.Items !== undefined ? "There are no items currently in the store" : ""}
         {currentlyVisibleState}
         <button onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>

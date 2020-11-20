@@ -1,3 +1,49 @@
-#list-view {
-  background-color: beige;
+#header {
+  text-align: center;
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  background:#333;
+  padding:8px;
+  letter-spacing: 10px;
+  font-weight: 900;
+  font-size: 50px;
+  color:rgb(202, 162, 162);
+}
+#body {
+  font-size: 25px;
+  margin-top: 200px;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#footer {
+  text-align: center;
+  position:fixed;
+  bottom:0px;
+  left:0px;
+  width:100%;
+  color:#CCC;
+  background:rgb(84, 82, 117);
+  padding:8px;
+}
+
+input {
+  font-size: 20px;
+  width: 250px;
+  height: 30px;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 0 10px 0 10px;
+}
+
+button {
+  font-size: 20px;
+  color: white;
+  background-color: cornflowerblue;
+  padding: 0 10px 0 10px;
+  height: 30px;
+  border-radius: 10px;
+  margin: 5px;
 }
