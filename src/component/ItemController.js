@@ -5,6 +5,7 @@ import NewItemForm from "./NewItemForm";
 import ItemDetail from './ItemDetail';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
+import * as a from './../actions'
 
 class ItemController extends React.Component{
   
@@ -19,14 +20,7 @@ class ItemController extends React.Component{
   //event handlers
   handleEditingItemInList = (itemToEdit) => { // editing item in actual array
     const { dispatch } = this.props;
-    const { name, description, quantity, id } = itemToEdit;
-    const action = {
-      type: 'ADD_ITEM',
-      Id: id,
-      Name: name,
-      Description: description,
-      Quantity: quantity
-    }
+    const action = a.addItem(itemToEdit);
     dispatch(action);
     this.setState({
       editing: false,
@@ -40,10 +34,7 @@ class ItemController extends React.Component{
 
   handleDeletingItem = (id) => { /// deletes item from array
     const { dispatch } = this.props;
-    const action = {
-      type: 'DELETE_ITEM',
-      Id: id
-    }
+    const action = a.deleteItem(id);
     dispatch(action);
     this.setState({selectedItem: null});
   }
@@ -55,10 +46,8 @@ class ItemController extends React.Component{
         editing: false
       });
     } else {
-      const {dispatch} = this.props;
-      const action = {
-        type: 'TOGGLE_FORM'
-      }
+      const { dispatch } = this.props;
+      const action = a.toggleForm();
       dispatch(action);
     }
   }
@@ -70,19 +59,10 @@ class ItemController extends React.Component{
 
   handleAddingNewItemToList = (newItem) => { // adds new item to Array
     const { dispatch } = this.props;
-    const { name, description, quantity, id } = newItem;
-    const action = {
-      type: 'ADD_ITEM',
-      Id: id,
-      Name: name,
-      Description: description,
-      Quantity: quantity
-    }
+    const action = a.addItem(newItem);
     dispatch(action);
-    const action2 = {
-      type:'TOGGLE_FORM'
-    }
-    dispatch(action2)
+    const action2 = a.toggleForm();
+    dispatch(action2);
   }
 
   handleChangeItemQuantityClick =  (itemToEdit) => {
