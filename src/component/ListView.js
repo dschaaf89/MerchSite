@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 function ListView(props) {
   return (
     <React.Fragment>
-      <ul>
-        {props.Items.map((item, index) => 
+      <hr />
+        {Object.values(props.Items).map((item) => 
         <Item
           whenItemClicked = {props.onItemSelection}
           Name={item.Name}
@@ -16,13 +16,12 @@ function ListView(props) {
           id={item.id}
           key={item.id}/>
         )}
-      </ul>
     </React.Fragment>
   );
 }
 
 Item.propTypes = {
-  Items: PropTypes.array,
+  Items: PropTypes.object,
   onItemSelection: PropTypes.func
 };
 

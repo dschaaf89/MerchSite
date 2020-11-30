@@ -29,8 +29,11 @@ function ReusableForm(props) {
         <input
           type='number'
           name='Quantity'
+          min='0'
+          max='28'
           defaultValue={props.Quantity ? props.Quantity : ""}
           placeholder='Enter a Quantity' />
+
         <button type ='submit'>Submit</button>
         {/* Add cancel button */}
       </form>

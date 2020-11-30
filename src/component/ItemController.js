@@ -19,7 +19,7 @@ class ItemController extends React.Component{
   }
   //event handlers
   handleEditingItemInList = (itemToEdit) => { // editing item in actual array
-    const { dispatch } - this.props;
+    const { dispatch } = this.props;
     const { name, description, quantity, id } = itemToEdit;
     const action = {
       type: 'ADD_ITEM',
@@ -64,9 +64,8 @@ class ItemController extends React.Component{
   }
 
   handleChangingSelectedItem = (id) => { // view item in Detail
-    const selectedItem = this.state.itemCatalog
-      .filter(item => item.id === id)[0];
-    this.setState({selectedItem});
+    const selectedItem = this.props.itemCatalog[id];
+    this.setState({selectedItem : selectedItem});
   }
 
   handleAddingNewItemToList = (newItem) => { // adds new item to Array
@@ -115,14 +114,14 @@ class ItemController extends React.Component{
       buttonText = "Return to Item List";
     } else {                                // default
       currentlyVisibleState = <ListView 
-        Items={this.state.itemCatalog} 
+        Items={this.props.itemCatalog} 
         onItemSelection={this.handleChangingSelectedItem} />;
       buttonText = "Add Item";
     }
     
     return (
       <React.Fragment>
-        {this.state.itemCatalog[0] === undefined && 
+        {this.props.itemCatalog[0] === undefined && 
           currentlyVisibleState.props.Items !== undefined ? "There are no items currently in the store" : ""}
         {currentlyVisibleState}
         <button onClick={this.handleClick}>{buttonText}</button>
@@ -140,6 +139,6 @@ const mapStateToProps = state => {
   }
 }
 
-ItemController = connect(mapStateToProps(ItemController);
+ItemController = connect(mapStateToProps)(ItemController);
 
 export default ItemController;
