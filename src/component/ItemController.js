@@ -4,6 +4,7 @@ import EditItemForm from "./EditItemForm";
 import NewItemForm from "./NewItemForm";
 import ItemDelete from "./ItemDelete";
 import ItemDetail from './ItemDetail';
+import { connect } from 'react-redux';
 
 class ItemController extends React.Component{
   
@@ -11,7 +12,6 @@ class ItemController extends React.Component{
     super(props)
     this.state = {
       formVisibleOnPage: false,
-      itemCatalog: [],
       selectedItem: null,
       editing: false
     }
@@ -61,12 +61,17 @@ class ItemController extends React.Component{
   }
 
   handleAddingNewItemToList = (newItem) => { // adds new item to Array
-    const newItemCatalog = this.state.itemCatalog
-      .concat(newItem);
-    this.setState({
-      itemCatalog: newItemCatalog,
-      formVisibleOnPage: false
-    });
+    const { dispatch } = this.props;
+    const { name, description, quantity, id } = newItem;
+    const action = {
+      type: 'ADD_ITEM',
+      Id: id,
+      Name: name,
+      Description: description,
+      Quantity: quantity
+    }
+    dispatch(action);
+    this.setState({formVisibleOnPage: false});
   }
 
   handleChangeItemQuantityClick =  (itemToEdit) => {
@@ -116,6 +121,6 @@ class ItemController extends React.Component{
     );
   }
 }
-
+ItemController = connect()(ItemController);
 
 export default ItemController;
