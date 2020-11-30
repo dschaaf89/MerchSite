@@ -2,7 +2,6 @@ import React from "react";
 import ListView from "./ListView";
 import EditItemForm from "./EditItemForm";
 import NewItemForm from "./NewItemForm";
-import ItemDelete from "./ItemDelete";
 import ItemDetail from './ItemDetail';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
@@ -12,7 +11,7 @@ class ItemController extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      formVisibleOnPage: false,
+      //formVisibleOnPage: false,
       selectedItem: null,
       editing: false
     }
@@ -52,14 +51,15 @@ class ItemController extends React.Component{
   handleClick = () => {  // sets state to normal
     if (this.state.selectedItem != null) {
       this.setState({
-        formVisibleOnPage: false,
         selectedItem: null,
         editing: false
       });
     } else {
-      this.setState(prevState => ({
-        formVisibleOnPage: !prevState.formVisibleOnPage,
-      }));
+      const {dispatch} = this.props;
+      const action = {
+        type: 'TOGGLE_FORM'
+      }
+      dispatch(action);
     }
   }
 
@@ -79,7 +79,10 @@ class ItemController extends React.Component{
       Quantity: quantity
     }
     dispatch(action);
-    this.setState({formVisibleOnPage: false});
+    const action2 = {
+      type:'TOGGLE_FORM'
+    }
+    dispatch(action2)
   }
 
   handleChangeItemQuantityClick =  (itemToEdit) => {
@@ -108,7 +111,7 @@ class ItemController extends React.Component{
         onChangeItemQuantityClick = {this.handleChangeItemQuantityClick} 
         />
       buttonText = "Return to Item List";
-    } else if (this.state.formVisibleOnPage) { // catch is set
+    } else if (this.props.formVisibleOnPage) { // catch is set
       currentlyVisibleState = <NewItemForm 
         onNewItemCreation={this.handleAddingNewItemToList} />
       buttonText = "Return to Item List";
@@ -130,12 +133,14 @@ class ItemController extends React.Component{
   }
 }
 ItemController.propTypes ={
-  itemCatalog:PropTypes.object
+  itemCatalog:PropTypes.object,
+  formVisibleOnPage: PropTypes.bool
 };
 
 const mapStateToProps = state => {
   return {
-    itemCatalog: state
+   itemCatalog : state.itemCatalog,
+   formVisibleOnPage: state.formVisibleOnPage
   }
 }
 

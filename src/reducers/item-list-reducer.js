@@ -11,10 +11,10 @@ export default (state = {},action) => {
       }
     });
     case 'DELETE_ITEM':
-      const newState = {... state};
+      const newState = {...state};
       delete newState[Id];
       return newState;
-  default:
+    default:
     return state;
   }
 };
