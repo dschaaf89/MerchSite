@@ -7,9 +7,13 @@ export default (state = {},action) => {
         Name:Name,
         Description:Description,
         Quantity:Quantity,
-        Id:Id
+        Id: Id
       }
     });
+    case 'DELETE_ITEM':
+      const newState = {... state};
+      delete newState[Id];
+      return newState;
   default:
     return state;
   }
