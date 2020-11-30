@@ -5,6 +5,7 @@ import NewItemForm from "./NewItemForm";
 import ItemDelete from "./ItemDelete";
 import ItemDetail from './ItemDetail';
 import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 
 class ItemController extends React.Component{
   
@@ -18,26 +19,34 @@ class ItemController extends React.Component{
   }
   //event handlers
   handleEditingItemInList = (itemToEdit) => { // editing item in actual array
-    const editedItemCatalog = this.state.itemCatalog
-      .filter(item => item.id !== this.state.selectedItem.id)
-      .concat(itemToEdit);
+    const { dispatch } - this.props;
+    const { name, description, quantity, id } = itemToEdit;
+    const action = {
+      type: 'ADD_ITEM',
+      Id: id,
+      Name: name,
+      Description: description,
+      Quantity: quantity
+    }
+    dispatch(action);
     this.setState({
-      itemCatalog: editedItemCatalog,
       editing: false,
       selectedItem: null
     });
   }
+
   handleEditClick = () => { // sets items to edit
     this.setState({editing: true});
   }
 
   handleDeletingItem = (id) => { /// deletes item from array
-    const newItemCatalog = this.state.itemCatalog
-      .filter(item => item.id !== id);
-    this.setState({
-      itemCatalog: newItemCatalog,
-      selectedItem: null
-    });
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_ITEM',
+      Id: id
+    }
+    dispatch(action);
+    this.setState({selectedItem: null});
   }
 
   handleClick = () => {  // sets state to normal
@@ -121,6 +130,16 @@ class ItemController extends React.Component{
     );
   }
 }
-ItemController = connect()(ItemController);
+ItemController.propTypes ={
+  itemCatalog:PropTypes.object
+};
+
+const mapStateToProps = state => {
+  return {
+    itemCatalog: state
+  }
+}
+
+ItemController = connect(mapStateToProps(ItemController);
 
 export default ItemController;
