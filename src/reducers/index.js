@@ -7,4 +7,6 @@ const rootReducer = combineReducers({
   itemCatalog: itemListReducer
 });
 
+console.log("in toggle");
+
 export default rootReducer;

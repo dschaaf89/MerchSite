@@ -5,7 +5,7 @@ import NewItemForm from "./NewItemForm";
 import ItemDetail from './ItemDetail';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
-import * as a from './../actions'
+import * as a from './../actions';
 
 class ItemController extends React.Component{
   
@@ -15,8 +15,9 @@ class ItemController extends React.Component{
       //formVisibleOnPage: false,
       selectedItem: null,
       editing: false
-    }
+    };
   }
+
   //event handlers
   handleEditingItemInList = (itemToEdit) => { // editing item in actual array
     const { dispatch } = this.props;
@@ -40,15 +41,19 @@ class ItemController extends React.Component{
   }
 
   handleClick = () => {  // sets state to normal
+    
     if (this.state.selectedItem != null) {
+      console.log("in handle if");
       this.setState({
         selectedItem: null,
         editing: false
       });
     } else {
+      console.log("in handle else");
       const { dispatch } = this.props;
       const action = a.toggleForm();
       dispatch(action);
+      console.log("in handle else2");
     }
   }
 
@@ -75,15 +80,17 @@ class ItemController extends React.Component{
   }
 
   render(){
+    console.log("inhere");
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.state.editing) { // edit
+      console.log("inhere edit");
       currentlyVisibleState = <EditItemForm 
         item = {this.state.selectedItem} 
         onEditItem =  {this.handleEditingItemInList}/>
       buttonText = "Return to Item List";
     } else if (this.state.selectedItem !== null) { // delete and edit
-      
+      console.log("inhere D&E");
       currentlyVisibleState = <ItemDetail 
         item = {this.state.selectedItem} 
         onClickingDelete = {this.handleDeletingItem} 
@@ -92,10 +99,12 @@ class ItemController extends React.Component{
         />
       buttonText = "Return to Item List";
     } else if (this.props.formVisibleOnPage) { // catch is set
+      console.log("inhere Set");
       currentlyVisibleState = <NewItemForm 
         onNewItemCreation={this.handleAddingNewItemToList} />
       buttonText = "Return to Item List";
     } else {                                // default
+      console.log("inhere Default");
       currentlyVisibleState = <ListView 
         Items={this.props.itemCatalog} 
         onItemSelection={this.handleChangingSelectedItem} />;
@@ -112,15 +121,15 @@ class ItemController extends React.Component{
     );
   }
 }
+
 ItemController.propTypes ={
-  itemCatalog:PropTypes.object,
-  formVisibleOnPage: PropTypes.bool
+  itemCatalog:PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
-   itemCatalog : state.itemCatalog,
-   formVisibleOnPage: state.formVisibleOnPage
+    itemCatalog: state.itemCatalog,
+    formVisibleOnPage: state.formVisibleOnPage
   }
 }
 

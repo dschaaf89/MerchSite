@@ -7,7 +7,7 @@ describe('Merch Site actions', () => {
       id : 1
     });
   });
-  it('toggleForm should create TOGGGLE_FORM action', () => {
+  it('toggleForm should create TOGGLE_FORM action', () => {
     expect(actions.toggleForm()).toEqual({
       type:'TOGGLE_FORM'
     });
@@ -18,7 +18,7 @@ describe('Merch Site actions', () => {
       Name:'ball',
       Description:'basketball',
       Quantity:3,
-      Id:1
+      id:1
     });
   });
 });

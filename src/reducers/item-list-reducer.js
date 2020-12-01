@@ -1,18 +1,18 @@
 export default (state = {},action) => {
-  const {Name,Description,Quantity,Id} = action;
+  const { name,description,quantity,id } = action;
   switch (action.type){
     case 'ADD_ITEM':
-    return Object.assign({},state,{
-      [Id]:{
-        Name:Name,
-        Description:Description,
-        Quantity:Quantity,
-        Id: Id
+    return Object.assign({}, state, {
+      [id]:{
+        Name: name,
+        Description: description,
+        Quantity: quantity,
+        id: id
       }
     });
     case 'DELETE_ITEM':
       const newState = {...state};
-      delete newState[Id];
+      delete newState[id];
       return newState;
     default:
     return state;

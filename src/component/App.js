@@ -6,7 +6,7 @@ import ItemController from "./ItemController";
 function App() {
   return (
     <React.Fragment>
-      <div class="contain">
+      <div className="container">
         <div id="header">
           <Header />
         </div>

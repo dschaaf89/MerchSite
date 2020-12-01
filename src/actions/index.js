@@ -3,7 +3,7 @@ export const deleteItem = id => ({
   id
 });
 
-export const toggleForm = () => ({
+export const toggleForm = () => ({  
   type: 'TOGGLE_FORM'
 });
 
@@ -14,6 +14,6 @@ export const addItem = (item) => {
     Name: name,
     Description: description,
     Quantity: quantity,
-    Id: id
+    id: id
   }
 }

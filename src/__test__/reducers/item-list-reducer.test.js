@@ -8,18 +8,18 @@ describe('itemListReducer', () => {
     1: { Name: 'Cat',
     Description: 'An orange cat',
     Quantity: 1,
-    Id: 1 },
+    id: 1 },
     2: { Name: 'Dog',
     Description: 'A brown dog',
     Quantity: 2,
-    Id: 2 }
+    id: 2 }
   }
   
   const itemData = {
     Name: 'Cat',
     Description: 'An orange cat',
     Quantity: 1,
-    Id: 1
+    id: 1
   };
   
   test('Should return default state if no action type is recognized', () => {
@@ -33,14 +33,14 @@ describe('itemListReducer', () => {
     Name: name,
     Description: description,
     Quantity: quantity,
-    Id: id
+    id: id
   };
     expect(itemListReducer({},action)).toEqual({
       [id]:{
         Name: name,
         Description: description,
         Quantity: quantity,
-        Id: id        
+        id: id        
       }
     });
   });
@@ -48,13 +48,13 @@ describe('itemListReducer', () => {
   test('should successfully delete an Item', () => {
     action = {
       type: 'DELETE_ITEM',
-      Id: 1
+      id: 1
     };
     expect(itemListReducer(currentState,action)).toEqual({
       2: { Name: 'Dog',
       Description: 'A brown dog',
       Quantity: 2,
-      Id: 2 }
+      id: 2 }
     });
   });
 });
