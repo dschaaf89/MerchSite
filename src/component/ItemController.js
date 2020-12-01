@@ -12,7 +12,6 @@ class ItemController extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      //formVisibleOnPage: false,
       selectedItem: null,
       editing: false
     };
@@ -43,17 +42,14 @@ class ItemController extends React.Component{
   handleClick = () => {  // sets state to normal
     
     if (this.state.selectedItem != null) {
-      console.log("in handle if");
       this.setState({
         selectedItem: null,
         editing: false
       });
     } else {
-      console.log("in handle else");
       const { dispatch } = this.props;
       const action = a.toggleForm();
       dispatch(action);
-      console.log("in handle else2");
     }
   }
 
@@ -71,26 +67,20 @@ class ItemController extends React.Component{
   }
 
   handleChangeItemQuantityClick =  (itemToEdit) => {
-    const editedItemCatalog = this.state.itemCatalog
-      .filter(item => item.id !== this.state.selectedItem.id)
-      .concat(itemToEdit);
-    this.setState({
-      itemCatalog: editedItemCatalog,
-    });
+    const { dispatch } = this.props;
+    const action = a.quantityChange(itemToEdit);
+    dispatch(action);
   }
 
   render(){
-    console.log("inhere");
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.state.editing) { // edit
-      console.log("inhere edit");
       currentlyVisibleState = <EditItemForm 
         item = {this.state.selectedItem} 
         onEditItem =  {this.handleEditingItemInList}/>
       buttonText = "Return to Item List";
     } else if (this.state.selectedItem !== null) { // delete and edit
-      console.log("inhere D&E");
       currentlyVisibleState = <ItemDetail 
         item = {this.state.selectedItem} 
         onClickingDelete = {this.handleDeletingItem} 
@@ -99,12 +89,10 @@ class ItemController extends React.Component{
         />
       buttonText = "Return to Item List";
     } else if (this.props.formVisibleOnPage) { // catch is set
-      console.log("inhere Set");
       currentlyVisibleState = <NewItemForm 
         onNewItemCreation={this.handleAddingNewItemToList} />
       buttonText = "Return to Item List";
     } else {                                // default
-      console.log("inhere Default");
       currentlyVisibleState = <ListView 
         Items={this.props.itemCatalog} 
         onItemSelection={this.handleChangingSelectedItem} />;

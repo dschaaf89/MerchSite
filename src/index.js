@@ -7,12 +7,11 @@ import { createStore } from 'redux';
 //import reducer from './reducers/item-list-reducer';
 import rootReducer from './reducers/index'
 import { Provider } from 'react-redux';
+import { composeWithDevTools, devToolsEnhancer } from 'redux-devtools-extension';
 
-const store = createStore(rootReducer);
+// const store = createStore(rootReducer);
 
-// store.subscribe(() => 
-//   console.log(store.getState())
-// );
+const store = createStore(rootReducer, devToolsEnhancer());
 
 ReactDOM.render(
   <Provider store = {store}>

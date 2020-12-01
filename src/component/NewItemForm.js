@@ -4,7 +4,6 @@ import {v4} from 'uuid'
 import ReusableForm from "./ReusableForm";
 
 function NewItemForm(props) {
-  console.log("in new form");
   function handleNewItemFormSubmission(event) {
     event.preventDefault();
     props.onNewItemCreation({

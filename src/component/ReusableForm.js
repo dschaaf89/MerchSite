@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function ReusableForm(props) {
-  console.log("in reuseable form");
   return (
     <React.Fragment>
       <form onSubmit={props.formSubmissionHandler}>
@@ -22,7 +21,6 @@ function ReusableForm(props) {
           type='number'
           name='Quantity'
           min='0'
-          max='28'
           defaultValue={props.Quantity ? props.Quantity : ""}
           placeholder='Enter a Quantity' />
         <button type ='submit'>Submit</button>

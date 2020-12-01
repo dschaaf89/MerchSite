@@ -3,10 +3,8 @@ import itemListReducer from './item-list-reducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-  formVisibleReducer: formVisibleReducer,
+  formVisibleOnPage: formVisibleReducer,
   itemCatalog: itemListReducer
 });
-
-console.log("in toggle");
 
 export default rootReducer;

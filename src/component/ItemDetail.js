@@ -1,9 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-
-
-
 function ItemDetail(props){
   const { item, onClickingDelete } = props;
   let quantity = item.Quantity;
